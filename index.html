@@ -53,15 +53,21 @@
 
         if (ua.includes("android")) {
            // Android: cố gắng mở app trước bằng intent
-      window.location.href = "intent://redirect#Intent;scheme=iacv;package=vn.acv.iacv;end;";
+      window.location.href = "intent://open#Intent;scheme=iacv;package=vn.acv.iacv;end";
       // Optional fallback sau vài giây nếu không có app:
       setTimeout(() => {
         window.location.href = "https://play.google.com/store/apps/details?id=vn.acv.iacv";
       }, 2000);
           // window.location.href = "https://play.google.com/store/apps/details?id=vn.acv.iacv";
         } else if (ua.includes("iphone") || ua.includes("ipad")) {
-            
-          window.location.href = "https://apps.apple.com/vn/app/iacv/id6446394961";
+              const now = Date.now();
+      setTimeout(() => {
+        if (Date.now() - now < 1500) {
+          redirectTo("https://apps.apple.com/vn/app/iacv/id6446394961"); // fallback nếu app không mở
+        }
+      }, 1000);
+      window.location = "vn.acv.iacv://open";
+          // window.location.href = "https://apps.apple.com/vn/app/iacv/id6446394961";
         } else {
           window.location.href = "https://example.com";
         }
