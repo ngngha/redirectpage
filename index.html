@@ -52,17 +52,17 @@
         const ua = navigator.userAgent.toLowerCase();
 
         if (ua.includes("android")) {
-            setTimeout(() => redirectTo("https://play.google.com/store/apps/details?id=vn.acv.iacv"), 2000);
-    redirectTo("vn.acv.iacv://open");
+            setTimeout(() => window.location.href = "https://play.google.com/store/apps/details?id=vn.acv.iacv", 2000);
+    window.location.href = "vn.acv.iacv://open");
           // window.location.href = "https://play.google.com/store/apps/details?id=vn.acv.iacv";
         } else if (ua.includes("iphone") || ua.includes("ipad")) {
               const now = Date.now();
       setTimeout(() => {
         if (Date.now() - now < 1500) {
-          redirectTo("https://apps.apple.com/vn/app/iacv/id6446394961"); // fallback nếu app không mở
+          window.location.href = "https://apps.apple.com/vn/app/iacv/id6446394961"; // fallback nếu app không mở
         }
       }, 1000);
-      window.location = "vn.acv.iacv://open";
+      window.location.href = "vn.acv.iacv://open";
           // window.location.href = "https://apps.apple.com/vn/app/iacv/id6446394961";
         } else {
           window.location.href = "https://example.com";
