@@ -21,7 +21,7 @@
   </style>
 </head>
 <body>
-  <div class="center-text">Đang chuyển hướng...</div>
+  <div class="center-text" id="redirect-text">Đang chuyển hướng...</div>
 
   <script>
     function redirectTo(url) {
@@ -37,6 +37,19 @@
     const androidStore = "https://play.google.com/store/apps/details?id=vn.acv.iacv";
 
     window.addEventListener("DOMContentLoaded", () => {
+        // Xác định ngôn ngữ thiết bị
+        const lang = navigator.language || navigator.userLanguage;
+      
+        // Chuyển nội dung tùy theo ngôn ngữ
+        const redirectTextElement = document.getElementById("redirect-text");
+        if (redirectTextElement) {
+          if (lang.startsWith("en")) {
+            redirectTextElement.innerText = "Redirecting...";
+          } else {
+            redirectTextElement.innerText = "Đang chuyển hướng...";
+          }
+        }
+      
       if (isAndroid) {
         setTimeout(() => redirectTo(androidStore), 2000);
         redirectTo(scheme);
